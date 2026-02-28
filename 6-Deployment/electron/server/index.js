@@ -3,8 +3,6 @@ const http = require("http");
 const cors = require("cors");
 const socketServer = require("./src/socketServer");
 
-const openai = require("./src/ai");
-
 const app = express();
 
 const server = http.createServer(app);

@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import { deleteConversations as deleteConversationsFromStore } from "../dashboardSlice";

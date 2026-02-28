@@ -1,4 +1,3 @@
-import React from "react";
 import { BsChatLeft } from "react-icons/bs";
 
 const ListItem = (props) => {

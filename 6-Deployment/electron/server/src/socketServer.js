@@ -1,8 +1,9 @@
 const { Server } = require("socket.io");
 const { v4: uuid } = require("uuid");
-const openai = require("./ai");
+const defaultOpenAI = require("./ai");
 
 let sessions = {};
+let openaiClient = defaultOpenAI;
 
 const registerSocketServer = (server) => {
   const io = new Server(server, {
@@ -76,7 +77,7 @@ const conversationMessageHandler = async (socket, data) => {
   let aiMessageContent = "Error occurred when trying to get message from the AI";
 
   try {
-    const response = await openai.createChatCompletion({
+    const response = await openaiClient.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
         ...previousConversationMessages,
@@ -117,4 +118,21 @@ const conversationDeleteHandler = (_, data) => {
   }
 };
 
-module.exports = { registerSocketServer };
+const __setOpenAIClient = (client) => {
+  openaiClient = client;
+};
+
+const __resetSessions = () => {
+  sessions = {};
+};
+
+module.exports = {
+  registerSocketServer,
+  __setOpenAIClient,
+  __resetSessions,
+  __handlers: {
+    sessionHistoryHandler,
+    conversationMessageHandler,
+    conversationDeleteHandler,
+  },
+};

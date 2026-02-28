@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BsSend } from "react-icons/bs";
 import { v4 as uuid } from "uuid";

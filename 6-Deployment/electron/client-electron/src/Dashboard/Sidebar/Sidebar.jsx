@@ -1,4 +1,3 @@
-import React from "react";
 import NewChatButton from "./NewChatButton.jsx";
 import ListItem from "./ListItem.jsx";
 import DeleteConversationsButton from "./DeleteConversationsButton.jsx";
