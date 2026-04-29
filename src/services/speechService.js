@@ -1,6 +1,4 @@
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-export const canListen = () => !!SpeechRecognition;
+export const canListen = () => !!(window.SpeechRecognition || window.webkitSpeechRecognition);
 export const canSpeak = () => !!window.speechSynthesis;
 
 let recognition = null;
