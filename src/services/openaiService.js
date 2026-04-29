@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001/api';
+import { API_BASE } from './apiConfig';
 
 export async function sendMessageToAI(messages, model = 'gpt-4o-mini') {
   const token = localStorage.getItem('auth_token');

@@ -8,7 +8,8 @@ const { Configuration, OpenAIApi } = require('openai');
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET || 'chatgpt-clone-dev-secret';
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
+const HOST = process.env.HOST || '0.0.0.0';
 
 const app = express();
 app.use(cors());
@@ -149,8 +150,8 @@ app.delete('/api/conversations', authMiddleware, async (req, res) => {
 
 const ready = connectToMongoDB().then(() => {
   initOpenAI();
-  return new Promise((resolve) => app.listen(PORT, () => {
-    console.log(`[API] Server running on http://localhost:${PORT}`);
+  return new Promise((resolve) => app.listen(PORT, HOST, () => {
+    console.log(`[API] Server running on http://${HOST}:${PORT}`);
     resolve();
   }));
 }).catch((err) => {
